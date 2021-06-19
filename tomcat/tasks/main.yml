@@ -1,7 +1,7 @@
 ---
 # tasks file for tomcat
 - name: Download tomcat package
-  command: "wget http://mirror.reverse.net/pub/apache/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.tar.gz"
+  command: "wget http://mirror.reverse.net/pub/apache/tomcat/tomcat-8/v8.5.66/bin/apache-tomcat-8.5.66.tar.gz"
   args:
      chdir: /tmp/
 
@@ -14,7 +14,7 @@
     - java-1.8.0-openjdk
 
 - name: Extract Tomcat archive
-  command: tar zxvf /tmp/apache-tomcat-8.5.40.tar.gz -C /opt/ creates=/opt/apache-tomcat-8.5.40
+  command: tar zxvf /tmp/apache-tomcat-8.5.66.tar.gz -C /opt/ creates=/opt/apache-tomcat-8.5.66
   args:
      chdir: /tmp/
 - name: Ansible template with_items example.
@@ -26,17 +26,17 @@
         owner: root
         group: root
   with_items:
-        - {src: '/etc/ansible/tomcat_latest/tomcat/templates/context.xml',dest: '/opt/apache-tomcat-8.5.40/webapps/manager/META-INF/'}
-        - {src: '/etc/ansible/tomcat_latest/tomcat/templates/tomcat-users.xml',dest: '/opt/apache-tomcat-8.5.40/conf/'}
+        - {src: '/etc/ansible/tomcat_latest/tomcat/templates/context.xml',dest: '/opt/apache-tomcat-8.5.66/webapps/manager/META-INF/'}
+        - {src: '/etc/ansible/tomcat_latest/tomcat/templates/tomcat-users.xml',dest: '/opt/apache-tomcat-8.5.66/conf/'}
 
 
 - name: copy arti facts to document root
   copy:
      src: /etc/ansible/sample.war
-     dest: /opt/apache-tomcat-8.5.40/webapps/sample.war
+     dest: /opt/apache-tomcat-8.5.66/webapps/sample.war
 
 #- name: Stop Tomcat
-#  command: nohup /opt/apache-tomcat-8.5.40/bin/shutdown.sh
+#  command: nohup /opt/apache-tomcat-8.5.66/bin/shutdown.sh
 
 - name: Start Tomcat
-  command: nohup /opt/apache-tomcat-8.5.40/bin/startup.sh
+  command: nohup /opt/apache-tomcat-8.5.66/bin/startup.sh
